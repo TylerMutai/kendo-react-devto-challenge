@@ -82,8 +82,8 @@ function LandingPage() {
               <GridLayoutItem key={c.value} className={"flex items-center"}>
                 <Button
                   onClick={() => {
-                    setShow(v => (!v))
-                    setType(c.value as tutoringType)
+                    setShow(v => (!v));
+                    setType(c.value as tutoringType);
                   }}
                   fillMode={buttonStyles.fillMode}
                   startIcon={c.icon}
@@ -95,11 +95,6 @@ function LandingPage() {
               </GridLayoutItem>
             ))}
           </GridLayout>
-
-          <Button onClick={() => setShow(v => (!v))} size={null} rounded={null}
-                  className={"rounded-2xl !px-12 text-2xl py-3"}>
-            Let’s improve
-          </Button>
         </div>}
 
       <div className="text-center pb-8">

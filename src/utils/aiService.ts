@@ -32,7 +32,7 @@ const promptAI = async (messages: { content: string; role: "system" | "user" }[]
       }),
     });
     const json = await res.json();
-    return json?.choices?.map((c: any) => c.message?.content).join("\n");
+    return json?.choices?.map((c: never) => (c as { message: { content: string } }).message?.content).join("\n");
   } catch (e) {
     console.error(e);
     return '';

@@ -86,7 +86,7 @@ function TutoringSection({show, type}: TutoringSectionProps) {
 
   return (
     shouldShow ?
-      <Zoom className="min-h-[100vh]" appear={true}>
+      <Zoom className="min-h-[90vh]" appear={true}>
         <div className="flex grow-1"/>
         <div className="w-full h-full md:w-1/3 bg-gradient-to-t from-black p-4 rounded-t-lg shadow-lg">
           <div className="h-full overflow-y-auto">

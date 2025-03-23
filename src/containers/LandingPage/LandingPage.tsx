@@ -8,6 +8,7 @@ import {BsPencil} from "react-icons/bs";
 import {LiaConfluence} from "react-icons/lia";
 import {GridLayout, GridLayoutItem} from "@progress/kendo-react-layout";
 import TutoringSection, {tutoringType} from "@/containers/LandingPage/TutoringSection";
+import {Zoom} from "@progress/kendo-react-animation";
 
 // Define the Channel interface
 interface Channel {
@@ -55,47 +56,59 @@ function LandingPage() {
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-black via-[#081334] to-black text-white">
       {/* Top bar */}
-      <div className="flex justify-between items-center p-4">
+      <div className="flex justify-between items-center p-4 px-8">
         <div className="flex items-center space-x-2">
           <span className="font-bold text-xl">Personal Tutor</span>
         </div>
+        <Button
+          onClick={() => {
+            setShow(false);
+          }}
+          fillMode={buttonStyles.fillMode}
+          size={"small"}
+          className={`bg-slate-800 hover:bg-slate-700 !text-white font-semibold !py-2 !px-4 flex items-center justify-start !w-auto !gap-8 !rounded-2xl text-xl`}
+        >
+          Reset
+        </Button>
       </div>
 
       {/* Main content (centered) */}
       {show ? <TutoringSection show={show} type={type as tutoringType}/> :
-        <div className="flex-grow flex flex-col justify-center items-center px-4 gap-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8">
-            What would you like to{' '}
-            <span className="text-blue-400">improve</span> in your English?
-          </h1>
+        <Zoom appear={true} className="flex-grow !flex flex-col justify-center items-center px-4 gap-12">
+          <div className="flex flex-col justify-center items-center px-4 gap-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8">
+              What would you like to{' '}
+              <span className="text-blue-400">improve</span> in your English?
+            </h1>
 
-          <GridLayout
-            style={{display: "grid"}}
-            rows={[
-              {height: rowHeight},
-              {height: rowHeight},
-            ]}
-            cols={[{width: colWidth}, {width: colWidth}]}
-            gap={{rows: 2, cols: 30}}
-          >
-            {channels.map((c) => (
-              <GridLayoutItem key={c.value} className={"flex items-center"}>
-                <Button
-                  onClick={() => {
-                    setShow(v => (!v));
-                    setType(c.value as tutoringType);
-                  }}
-                  fillMode={buttonStyles.fillMode}
-                  startIcon={c.icon}
-                  size={buttonStyles.size}
-                  className={buttonStyles.className}
-                >
-                  {"  "} {c.text}
-                </Button>
-              </GridLayoutItem>
-            ))}
-          </GridLayout>
-        </div>}
+            <GridLayout
+              style={{display: "grid"}}
+              rows={[
+                {height: rowHeight},
+                {height: rowHeight},
+              ]}
+              cols={[{width: colWidth}, {width: colWidth}]}
+              gap={{rows: 2, cols: 30}}
+            >
+              {channels.map((c) => (
+                <GridLayoutItem key={c.value} className={"flex items-center"}>
+                  <Button
+                    onClick={() => {
+                      setShow(v => (!v));
+                      setType(c.value as tutoringType);
+                    }}
+                    fillMode={buttonStyles.fillMode}
+                    startIcon={c.icon}
+                    size={buttonStyles.size}
+                    className={buttonStyles.className}
+                  >
+                    {"  "} {c.text}
+                  </Button>
+                </GridLayoutItem>
+              ))}
+            </GridLayout>
+          </div>
+        </Zoom>}
 
       <div className="text-center pb-8">
         <p className="text-gray-400">
@@ -103,6 +116,7 @@ function LandingPage() {
         </p>
       </div>
     </div>
+
   );
 }
 
